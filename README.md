@@ -160,6 +160,33 @@ To extract the OpenShift command-line tools use following command:
 `mv kubectl openshift-dir/`
 
 
+## Step 6: Creating the Installation Configuration File
+We can customize the OpenShift Container Platform cluster, that is being installed on Amazon Web Services (AWS), with the help of `install-config.yaml` file.
+
+**Step 6 (a):** Change to the directory that contains the installation program, i.e. `openshift-dir/`, and create the `install-config.yaml` file with the help of running the following command:
+
+`./openshift-install create install-config --dir openshift`
+
+When specifying the directory:
+- Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+- Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
+
+**Step 6 (b):** At the prompts, provide the configuration details for AWS cloud:
+- Optional: Select an SSH key to use to access your cluster machines.
+    - For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+- Select AWS as the platform to target.
+- If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the **AWS access key ID** and **secret access key** for the user that you configured to run the installation program.
+- Select the AWS region to deploy the cluster to.
+- Select the base domain for the Route 53 service that we configured for our cluster. 
+    - For our case it is `asadhanif.dev`.
+- Enter a descriptive name for the cluster. 
+    - For our case it is `os-test-cluster`.
+- Paste the `pull secret` from the Red Hat OpenShift Cluster Manager.
+
+**Step 6 (c):** Modify the `install-config.yaml` file as per our requirements. 
+
+
+
 
 ## Step x: Installing a cluster on AWS with customizations
 In OpenShift Container Platform version 4.12, we can install a customized cluster on infrastructure that the installation program provisions on Amazon Web Services (AWS). To customize the installation, we need to modify parameters in the `install-config.yaml` file before installing the cluster.
