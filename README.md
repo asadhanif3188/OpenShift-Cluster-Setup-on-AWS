@@ -92,20 +92,31 @@ If the ssh-agent process is not already running for local user, start it as a ba
 
 **Note:** When we install OpenShift Container Platform, we'll provide the SSH public key to the installation program.
 
-## Step 4: Installing a cluster on AWS with customizations
+## Step 4: Setup Cluster on OpenShift Console 
 
 **Step 4 (a):** Go to the [OpenShift Console](https://console.redhat.com/openshift) to manage the cluster. 
 
 <img src="./screenshots/6-openshift-console.png" width="90%" />
 
-**Step 4 (b):** Click on the **Create Cluster** button, following screen will be shown. Scrolldown to see the **Run it yourself** option, as shown in 2nd image.  
+**Step 4 (b):** Click on the **Create Cluster** button, following screen will be shown. 
 
 <img src="./screenshots/7-Select-an-OpenShift-cluster-type.png" width="90%" />
 
+**Step 4 (c):** Scrolldown to see the **Run it yourself** option, as shown in following image.
+
 <img src="./screenshots/8-Run-it-yourself.png" width="90%" />
 
+**Step 4 (d):** Now click on **AWS (x86_64)** option. Following screen will be shown to choose the installation type. 
+
+<img src="./screenshots/9-select-the-installation-type.png" width="90%" />
+
+**Step 4 (e):** Click on **Full control** option to see the installation steps. 
+
+<img src="./screenshots/10-Install-OpenShift-on-AWS-steps.png" width="90%" />
 
 
+
+ 
 ## Step x: Installing a cluster on AWS with customizations
 In OpenShift Container Platform version 4.12, we can install a customized cluster on infrastructure that the installation program provisions on Amazon Web Services (AWS). To customize the installation, we need to modify parameters in the `install-config.yaml` file before installing the cluster.
 
