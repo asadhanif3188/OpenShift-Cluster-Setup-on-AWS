@@ -56,7 +56,6 @@ Sign in to the **AWS Management Console** and open the **Route 53 console** at h
 
 <img src="./screenshots/3-iam-user-account.png" width="90%" />
 
-
 **Step 2 (b):** We also need create access key to enable programmatic access, so that openshift can access and manage the aws account for resource provisioning.  
 
 <img src="./screenshots/4-programmatic-access.png" width="90%" />
@@ -114,9 +113,54 @@ If the ssh-agent process is not already running for local user, start it as a ba
 
 <img src="./screenshots/10-Install-OpenShift-on-AWS-steps.png" width="90%" />
 
+## Step 5: Obtaining the installation program
+
+**Step 5 (a):** Go to the AWS Managment Console and see the list of **EC2 instances**. Get the access of **openshift-client** VM, created in step 3 (a), via SSH. 
+
+**Step 5 (b):** Create a directory to place the installation configuration files, using following command:
+
+`mkdir openshift-dir`
+
+**Step 5 (c):** Download and extract the install program, i.e. OpenShift installer, on VM. 
+
+To download the installer use following command: 
+
+`wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-install-linux.tar.gz`
+
+To extract the installer use following command: 
+
+`tar -xvf openshift-install-linux.tar.gz`
+
+<img src="./screenshots/11-extract-the-installer.png" width="90%" />
+
+**Step 5 (c):** Move the `openshift-install` directory to the `openshift-dir` directory using following command. 
+
+`mv openshift-install openshift-dir/`
+
+**Step 5 (d):** Copy the pull secret from the [Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret) and store into `openshift-dir/pull-secret.txt` file using following command.
+
+`nano openshift-dir/pull-secret.txt`
+
+This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
+
+**Step 5 (e):** Download the OpenShift command-line tools, i.e. `oc` and `kubctl`, and add them to your PATH.
+
+To download the OpenShift command-line tools use following command: 
+
+`wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz`
+
+To extract the OpenShift command-line tools use following command: 
+
+`tar -xvf openshift-client-linux.tar.gz`
+
+**Step 5 (f):** Move the `oc` and `kubectl` directory to the `openshift-dir` directory using following commands. 
+
+`mv oc openshift-dir/`
+
+`mv kubectl openshift-dir/`
 
 
- 
+
 ## Step x: Installing a cluster on AWS with customizations
 In OpenShift Container Platform version 4.12, we can install a customized cluster on infrastructure that the installation program provisions on Amazon Web Services (AWS). To customize the installation, we need to modify parameters in the `install-config.yaml` file before installing the cluster.
 
