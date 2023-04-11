@@ -17,9 +17,9 @@ Sign in to the **AWS Management Console** and open the **Route 53 console** at h
 
 In the Create Hosted Zone pane, enter the name of the domain to route traffic for. Following image is presenting the created public hosted zone. 
 
-<img src="./images/1-public-hosted-zone.png" width="90%" />
+<img src="./screenshots/1-public-hosted-zone.png" width="90%" />
 
 Next step is to update the DNS records at Namecheap. 
 
-<img src="./images/2-namecheap-dns-records.png" width="90%" />
+<img src="./screenshots/2-namecheap-dns-records.png" width="90%" />
 
