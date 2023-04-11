@@ -1,4 +1,4 @@
-# Installing an OpenShift cluster on AWS with customizations
+# OpenShift Cluster Setup on AWS
 In OpenShift Container Platform version 4.12, we can install a customized cluster on infrastructure that the installation program provisions on Amazon Web Services (AWS). To customize the installation, we need to modify parameters in the `install-config.yaml` file before installing the cluster.
 
 ## Pre-Requisites
@@ -23,3 +23,11 @@ Next step is to update the DNS records at Namecheap.
 
 <img src="./screenshots/2-namecheap-dns-records.png" width="90%" />
 
+## Step 2: Creating an IAM User on AWS
+Create the **IAM user** with *administrator* access using the AWS Management Console.
+
+<img src="./screenshots/3-iam-user-account.png" width="90%" />
+
+We also need create access key to enable programmatic access, so that openshift can access and manage the aws account for resource provisioning.  
+
+<img src="./screenshots/4-programmatic-access.png" width="90%" />
