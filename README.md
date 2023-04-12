@@ -180,11 +180,78 @@ When specifying the directory:
 - Select the base domain for the Route 53 service that we configured for our cluster. 
     - For our case it is `asadhanif.dev`.
 - Enter a descriptive name for the cluster. 
-    - For our case it is `os-test-cluster`.
+    - For our case it is `asad-test-cluster`.
 - Paste the `pull secret` from the Red Hat OpenShift Cluster Manager.
+
+<img src="./screenshots/12-the-configuration-details-for-AWS-cloud.png" width="90%" />
+
 
 **Step 6 (c):** Modify the `install-config.yaml` file as per our requirements. 
 
+**Original** configuration file. 
+
+```
+additionalTrustBundlePolicy: Proxyonly
+apiVersion: v1
+baseDomain: asadhanif.dev
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform: {}
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform: {}
+  replicas: 3
+metadata:
+  creationTimestamp: null
+  name: asad-test-cluster
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  aws:
+    region: us-east-1
+publish: External
+```
+We need to modify the **compute** and **control plane** sections as following: 
+
+```
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform: 
+    aws:
+      type: t3a.large
+  replicas: 2
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform: 
+    aws:
+      type: t3a.xlarge
+  replicas: 1
+```
+
+Once done, save the `install-config.yaml` file. 
+
+## Step 7: Deploying the cluster
+Now we can install OpenShift Container Platform on AWS cloud platform.
+
+**Step 7 (a):** Change to the directory that contains the installation program and initialize the cluster deployment using following command:
+
+`./openshift-install create cluster --dir openshift --log-level=info` 
 
 
 
